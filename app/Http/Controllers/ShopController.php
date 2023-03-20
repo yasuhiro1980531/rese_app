@@ -26,4 +26,14 @@ class ShopController extends Controller
         $shop = Shop::find($id);
         return view('shop.detail',compact('shop'));
     }
+
+    public function mypage()
+    {
+        return view('mypage');
+    }
+
+    public function done()
+    {
+        return view('shop.done');
+    }
 }
