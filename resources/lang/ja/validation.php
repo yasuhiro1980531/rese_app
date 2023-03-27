@@ -153,6 +153,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'reserve_date' => '予約日時',
+        'reserve_time' => '予約時間',
+        'reserve_num' => '予約人数',
+    ],
 
 ];

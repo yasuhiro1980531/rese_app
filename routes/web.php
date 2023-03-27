@@ -36,6 +36,7 @@ Route::get('/',[ShopController::class,'index'])->name('shop.index');
 
 Route::get('/detail/:shop_id/{id}',[ShopController::class,'detail'])->name('shop.detail');
 
+Route::post('/done',[ShopController::class,'reserve'])->name('shop.reserve');
+
 Route::get('/mypage',[ShopController::class,'mypage'])->name('mypage');
 
-Route::get('/done',[ShopController::class,'done'])->name('done');

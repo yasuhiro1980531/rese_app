@@ -21,40 +21,69 @@
     </div>
     @auth
     <div class="col-5" >
-      <form method="post" action="#">
+      <form method="post" action="{{ route('shop.reserve') }}">
         @csrf
         <div class="reserve">
           <div class="p-3">
             <h2 class="mb-3 text-white">予約</h2>
             <div class="mb-3">
-              <input type="date" class="form-control">
+              <input type="hidden" name="members_id" value="members_id">
+                @if ($errors->has('reserve_date'))
+                <p class="alert alert-danger mt-2">
+                  {{ $errors->first('reserve_date') }}</p>
+                @endif
+              <input id="date" type="date" name="reserve_date" value="{{old('reserve_date')}}" class="form-control">
             </div>
             <div class="mb-3">
-              <input type="time" class="form-control">
+                @if ($errors->has('reserve_time'))
+                <p class="alert alert-danger mt-2">
+                  {{ $errors->first('reserve_time') }}</p>
+                @endif
+              <select name="reserve_time" id="time" class="form-control">
+                <option value="">予約時間</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+              </select>
             </div>
             <div class="mb-3">
-              <input type="number" class="form-control">
+                @if ($errors->has('reserve_num'))
+                <p class="alert alert-danger mt-2">
+                  {{ $errors->first('reserve_num') }}</p>
+                @endif
+              <select name="reserve_num" id="num" class="form-control">
+                <option value="">予約人数</option>
+                <option value="1">1人</option>
+                <option value="2">2人</option>
+                <option value="3">3人</option>
+                <option value="4">4人</option>
+                <option value="5">5人</option>
+                <option value="6">6人</option>
+              </select>
             </div>
-            <table class="text-white table" style=>
+            <table class="text-white table" id="table">
               <tr>
                 <th class="col-4">Shop</th>
                 <td>{{ $shop->name }}</td>
               </tr>
               <tr>
                 <th>Date</th>
-                <td>{{ $shop->name }}</td>
+                <td id="reserveDate">予約日時</td>
               </tr>
               <tr>
                 <th>Time</th>
-                <td>{{ $shop->name }}</td>
+                <td id="reserveTime">予約時間</td>
               </tr>
               <tr>
                 <th>Number</th>
-                <td>{{ $shop->name }}</td>
+                <td id="reserveNum">予約人数</td>
               </tr>
             </table>  
           </div>
-            <button class="btn btn-primary w-100 reserve_btn"><a class="text-white"href="{{route('done')}}">予約する</a></button>
+            <button class="btn btn-primary w-100 reserve_btn">予約する</button>
         </div>
       </form>
       @endauth

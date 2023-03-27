@@ -28,4 +28,21 @@ class Shop extends Model
     {
         return $this->belongsToMany(Member::class);
     }
+
+    public static function doSearch($keyword,$genre_id,$area)
+    {
+        $query = self::query();
+        if (!empty($keyword)) {
+            $query->where('name', 'like binary', "%{$keyword}%");
+        }
+        if(!empty($genre_id)) {
+            $query->where('genre_id', 'LIKE',$genre_id);
+        }
+
+        if(!empty($area)) {
+            $query->where('area', 'LIKE',$area);
+        }
+        $results = $query->get();
+        return $results;
+    }
 }
