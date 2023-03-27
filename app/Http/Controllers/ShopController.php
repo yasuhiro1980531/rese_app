@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use App\Models\Genre;
 use App\Models\Reserve;
@@ -52,6 +53,9 @@ class ShopController extends Controller
 
     public function mypage()
     {
-        return view('mypage');
+        $user = AUth::user();
+        $shops = Shop::all();
+
+        return view('mypage',['user' => $user,'shops' => $shops]);
     }
 }

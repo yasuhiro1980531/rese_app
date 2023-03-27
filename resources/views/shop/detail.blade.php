@@ -39,7 +39,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('reserve_time') }}</p>
                 @endif
-              <select name="reserve_time" id="time" class="form-control">
+              <select name="reserve_time" id="time" class="form-select">
                 <option value="">予約時間</option>
                 <option value="17:00">17:00</option>
                 <option value="18:00">18:00</option>
@@ -54,7 +54,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('reserve_num') }}</p>
                 @endif
-              <select name="reserve_num" id="num" class="form-control">
+              <select name="reserve_num" id="num" class="form-select">
                 <option value="">予約人数</option>
                 <option value="1">1人</option>
                 <option value="2">2人</option>

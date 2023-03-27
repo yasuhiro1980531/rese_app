@@ -7,7 +7,7 @@
 @extends('layouts.header')
   <form id="form" method="get">
       @csrf  
-  <div class="row justify-content-end mb-2">
+  <div class="row justify-content-center mb-2">
       <div class="col-sm-3">
         <select class="form-select" name="area">
         <option value="">All area</option>
