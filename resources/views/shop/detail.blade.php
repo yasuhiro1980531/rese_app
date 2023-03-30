@@ -27,8 +27,10 @@
           <div class="p-3">
             <h2 class="mb-3 text-white">予約</h2>
             <div class="mb-3">
-              <input type="hidden" name="members_id" value="members_id">
-                @if ($errors->has('reserve_date'))
+              @foreach($members as $member)
+              <input type="hidden" name="members_id" value="{{ $member->id }}">
+              @endforeach
+              @if ($errors->has('reserve_date'))
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('reserve_date') }}</p>
                 @endif
@@ -104,5 +106,6 @@
       @endguest
     </div>
   </div>
+  <script src="{{asset('/js/reserve.js')}}"></script>
 @endsection
 

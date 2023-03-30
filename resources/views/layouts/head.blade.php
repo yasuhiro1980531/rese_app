@@ -12,6 +12,5 @@
 </head>
 <body>
     @yield('content')
-    <script src="{{asset('/js/index.js')}}"></script>
 </body>
 </html>

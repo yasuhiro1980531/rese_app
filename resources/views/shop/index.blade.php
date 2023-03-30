@@ -9,7 +9,7 @@
       @csrf  
   <div class="row justify-content-center mb-2">
       <div class="col-sm-3">
-        <select class="form-select" name="area">
+        <select id="area" name="area" class="form-select" onChange="submit('this.form')">
         <option value="">All area</option>
         @foreach($shops->unique('area') as $shop)
         <option value="{{ $shop->area }}" @if($area == $shop->area) selected @endif>{{ $shop->area }}</option>
@@ -17,7 +17,7 @@
         </select>
       </div>
       <div class="col-sm-3">
-        <select name="genre" class="form-select">
+        <select id="genre" name="genre" class="form-select" onChange="submit('this.form')">
         <option value="">All genre</option>
         @foreach($genres as $genre)
         <option value="{{ $genre->id }}" @if($genre_id == $genre->id ) selected @endif >
@@ -42,12 +42,13 @@
             <p>#{{$result->genre->name}}</p>
           </div>
           <div class="d-flex justify-content-between">
-            <a href="{{ route('shop.detail', ['id'=>$shop->id]) }}" class="btn btn-primary">詳しく見る</a>
-            <i class="fa fa-regular fa-heart"></i>
+            <a href="{{ route('shop.detail', ['id'=> $result->id]) }}" class="btn btn-primary">詳しく見る</a>
+            <i id="heart" class="fa fa-regular fa-heart"></i>
           </div>
         </div>
     </div>
     @endforeach
   </div>
 </div>
+<script src="{{asset('/js/search.js')}}"></script>
 @endsection

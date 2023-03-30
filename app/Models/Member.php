@@ -19,12 +19,12 @@ class Member extends Model
         'shop_id'
     ];
 
-     public function reserves()
+    public function reserves()
     {
         return $this->hasMany(Reserve::class);
     }
 
-     public function likes()
+    public function likes()
     {
         return $this->hasMany(Like::class);
     }

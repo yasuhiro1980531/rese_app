@@ -12,12 +12,6 @@ use App\Http\Requests\ReserveRequest;
 
 class ShopController extends Controller
 {
-    public function unsetToken($request)
-    {
-        $form = $request->all();
-        unset($form['_token']);
-        return $form;
-    }
 
     public function index(Request $request)
     {
@@ -40,22 +34,28 @@ class ShopController extends Controller
     public function detail($id)
     {
         $shop = Shop::find($id);
-        return view('shop.detail',compact('shop'));
+        $members = Member::where('user_id',Auth::id())->where('shop_id',$shop->id)->get();
+        if(empty($members)){
+            $members = Member::create(['user_id' => Auth::id(),'shop_id' => $shop->id]);
+        }
+        return view('shop.detail',compact('shop','members'));
     }
 
     public function reserve(ReserveRequest $request)
     {
+        $members_id = $request['members_id'];
+        dd($members_id);
         $reserves = $request->all();
-        dd($reserves);
+        //dd($reserves);
         Reserve::create($reserves);
-        return view('shop.done',['reserves'=> $reserves]);
+        return view('shop.done',compact('reserves'));
     }
 
     public function mypage()
     {
-        $user = AUth::user();
+        $user = Auth::user();
         $shops = Shop::all();
 
-        return view('mypage',['user' => $user,'shops' => $shops]);
+        return view('mypage',compact('user','shops'));
     }
 }

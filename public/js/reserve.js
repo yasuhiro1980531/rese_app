@@ -1,3 +1,4 @@
+// 予約情報表示
 const date = document.getElementById('date');
 const time = document.getElementById('time');
 const num = document.getElementById('num');
