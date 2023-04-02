@@ -4,19 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Member;
+use App\Models\User;
+use App\Models\Shop;
 
 class Like extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'likes',
-        'members_id'
+        'user_id',
+        'shop_id'
     ];
 
-    public function members()
+    public function user()
     {
-        return $this->belongsTo(Member::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
     }
 }

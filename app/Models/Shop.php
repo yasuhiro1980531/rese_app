@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Genre;
-use App\Models\Member;
+use App\Models\Reserve;
+use App\Models\Like;
+use App\Models\User;
 
 class Shop extends Model
 {
@@ -24,9 +26,19 @@ class Shop extends Model
         return $this->belongsTo(Genre::class);
     }
 
-    public function members()
+    public function reserves()
     {
-        return $this->belongsToMany(Member::class);
+        return $this->hasMany(Reserve::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 
     public static function doSearch($keyword,$genre_id,$area)

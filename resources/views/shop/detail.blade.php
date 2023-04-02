@@ -27,9 +27,8 @@
           <div class="p-3">
             <h2 class="mb-3 text-white">予約</h2>
             <div class="mb-3">
-              @foreach($members as $member)
-              <input type="hidden" name="members_id" value="{{ $member->id }}">
-              @endforeach
+              <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+              <input type="hidden" name="shop_id" value="{{ $shop->id }}">
               @if ($errors->has('reserve_date'))
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('reserve_date') }}</p>

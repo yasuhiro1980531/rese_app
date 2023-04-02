@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\LikeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,9 +35,15 @@ require __DIR__.'/auth.php';
 
 Route::get('/',[ShopController::class,'index'])->name('shop.index');
 
+Route::get('/like/{shop}',[LikeController::class,'likes'])->name('like');
+
+Route::get('/unlike/{shop}',[LikeController::class,'unlikes'])->name('unlike');
+
 Route::get('/detail/:shop_id/{id}',[ShopController::class,'detail'])->name('shop.detail');
 
 Route::post('/done',[ShopController::class,'reserve'])->name('shop.reserve');
 
 Route::get('/mypage',[ShopController::class,'mypage'])->name('mypage');
+
+Route::post('/mypage/{id}',[ShopController::class,'delete'])->name('reserve.delete');
 

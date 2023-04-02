@@ -1,18 +1,18 @@
 //リアルタイム検索
 const area = document.getElementById('area');
 const genre = document.getElementById('genre');
-const heart = document.querySelector('#heart');
+const heart = document.getElementById('heart');
 
-area.addEventListener('change', function (event) {
-event.preventDefault();
-console.log(area.value);
-});
+area.onchange = function () {
+  document.searchform.submit();
+}
 
-genre.addEventListener('change', function (event) {
-event.preventDefault();
-console.log(genre.value);
-});
+genre.onchange = function () {
+  document.searchform.submit();
+}
 
-heart.addEventListener('click', function () {
-  heart.classList.toggle('text-danger');
-})
+
+// heart.addEventListener('click', function (event) {
+//   event.preventDefault();
+//   heart.classList.toggle('text-danger');
+// })

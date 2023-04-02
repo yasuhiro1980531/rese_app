@@ -7,16 +7,21 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use App\Models\Genre;
 use App\Models\Reserve;
-use App\Models\Member;
+use App\Models\Like;
+use App\Models\User;
 use App\Http\Requests\ReserveRequest;
 
 class ShopController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(Shop $shop,Request $request)
     {
         $shops = Shop::all();
         $genres = Genre::all();
+        $user_id = Auth::id();
+        $likes = Like::all();
+        $like = Like::where('user_id',$user_id)->get();
+        //dd($like);
         $keyword = $request['keyword'];
         $genre_id = $request['genre'];
         $area = $request['area'];
@@ -24,38 +29,40 @@ class ShopController extends Controller
         $results = Shop::doSearch($keyword,$genre_id,$area);
         return view('shop.index',
                     ['shops' => $shops,
-                    'genres' => $genres, 
+                    'genres' => $genres,
+                    'likes' => $likes, 
                     'genre_id' => $genre_id,
                     'area' => $area,
-                    'results' => $results
+                    'results' => $results,
+                    'like' => $like
                     ]);
     }
 
     public function detail($id)
     {
         $shop = Shop::find($id);
-        $members = Member::where('user_id',Auth::id())->where('shop_id',$shop->id)->get();
-        if(empty($members)){
-            $members = Member::create(['user_id' => Auth::id(),'shop_id' => $shop->id]);
-        }
-        return view('shop.detail',compact('shop','members'));
+        return view('shop.detail',compact('shop'));
     }
 
     public function reserve(ReserveRequest $request)
     {
-        $members_id = $request['members_id'];
-        dd($members_id);
-        $reserves = $request->all();
-        //dd($reserves);
-        Reserve::create($reserves);
-        return view('shop.done',compact('reserves'));
+        $reserveInfo = $request->all();
+        Reserve::create($reserveInfo);
+        return view('shop.done',compact('reserveInfo'));
     }
 
     public function mypage()
     {
         $user = Auth::user();
-        $shops = Shop::all();
+        $likes = Like::where('user_id',Auth::id())->get();
+        $reserves = Reserve::where('user_id',Auth::id())->get();
+        return view('mypage',compact('user','likes','reserves'));
+    }
 
-        return view('mypage',compact('user','shops'));
+    public function delete($id)
+    {
+        $reserve = Reserve::find($id);
+        $reserve->delete();
+        return redirect()->route('mypage');
     }
 }

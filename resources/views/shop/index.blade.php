@@ -5,11 +5,11 @@
 @section('content')
 <div class="container">
 @extends('layouts.header')
-  <form id="form" method="get">
+  <form id="form" name="searchform" method="get">
       @csrf  
   <div class="row justify-content-center mb-2">
       <div class="col-sm-3">
-        <select id="area" name="area" class="form-select" onChange="submit('this.form')">
+        <select id="area" name="area" class="form-select">
         <option value="">All area</option>
         @foreach($shops->unique('area') as $shop)
         <option value="{{ $shop->area }}" @if($area == $shop->area) selected @endif>{{ $shop->area }}</option>
@@ -17,7 +17,7 @@
         </select>
       </div>
       <div class="col-sm-3">
-        <select id="genre" name="genre" class="form-select" onChange="submit('this.form')">
+        <select id="genre" name="genre" class="form-select">
         <option value="">All genre</option>
         @foreach($genres as $genre)
         <option value="{{ $genre->id }}" @if($genre_id == $genre->id ) selected @endif >
@@ -42,8 +42,16 @@
             <p>#{{$result->genre->name}}</p>
           </div>
           <div class="d-flex justify-content-between">
-            <a href="{{ route('shop.detail', ['id'=> $result->id]) }}" class="btn btn-primary">詳しく見る</a>
-            <i id="heart" class="fa fa-regular fa-heart"></i>
+            <a href="{{ route('shop.detail', ['id'=> $result->id]) }}" class="btn btn-primary mt-1 mb-2">詳しく見る</a>
+            @if($like === null)
+              <a href="{{ route('unlike', $result) }}">
+              <button>削除<i class="fa fa-solid fa-heart" style="color: #f96262;"></i></button>
+              </a>
+            @else
+              <a href="{{ route('like', $result) }}">
+              <button>追加<i id="heart" class="fa fa-regular fa-heart"></i></button>
+              </a>
+            @endif
           </div>
         </div>
     </div>
