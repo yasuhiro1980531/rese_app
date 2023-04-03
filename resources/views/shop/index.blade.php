@@ -43,15 +43,19 @@
           </div>
           <div class="d-flex justify-content-between">
             <a href="{{ route('shop.detail', ['id'=> $result->id]) }}" class="btn btn-primary mt-1 mb-2">詳しく見る</a>
-            @if($like === null)
+            <div>
+            @auth
+            @if($likes->where('user_id',$user_id)->where('shop_id',$result->id)->first())
               <a href="{{ route('unlike', $result) }}">
-              <button>削除<i class="fa fa-solid fa-heart" style="color: #f96262;"></i></button>
+              <button><i class="fa fa-solid fa-heart" style="color: #f96262;"></i></button>
               </a>
             @else
               <a href="{{ route('like', $result) }}">
-              <button>追加<i id="heart" class="fa fa-regular fa-heart"></i></button>
+              <button><i id="heart" class="fa fa-regular fa-heart"></i></button>
               </a>
             @endif
+            @endauth
+            </div>
           </div>
         </div>
     </div>

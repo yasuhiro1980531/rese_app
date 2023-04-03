@@ -14,28 +14,22 @@ use App\Http\Requests\ReserveRequest;
 class ShopController extends Controller
 {
 
-    public function index(Shop $shop,Request $request)
+    public function index(Request $request)
     {
         $shops = Shop::all();
         $genres = Genre::all();
         $user_id = Auth::id();
         $likes = Like::all();
-        $like = Like::where('user_id',$user_id)->get();
-        //dd($like);
         $keyword = $request['keyword'];
         $genre_id = $request['genre'];
         $area = $request['area'];
         $query = Shop::query();
         $results = Shop::doSearch($keyword,$genre_id,$area);
-        return view('shop.index',
-                    ['shops' => $shops,
-                    'genres' => $genres,
-                    'likes' => $likes, 
-                    'genre_id' => $genre_id,
-                    'area' => $area,
-                    'results' => $results,
-                    'like' => $like
-                    ]);
+        return view('shop.index',compact('shops','genres','user_id','genre_id','area','results','likes'));
+    }
+
+    public function menu(){
+        return view('shop.menu');
     }
 
     public function detail($id)

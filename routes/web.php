@@ -47,3 +47,5 @@ Route::get('/mypage',[ShopController::class,'mypage'])->name('mypage');
 
 Route::post('/mypage/{id}',[ShopController::class,'delete'])->name('reserve.delete');
 
+Route::get('/mypage/unlike/{like}',[LikeController::class,'likeDelete'])->name('mypage.likeDelete');
+

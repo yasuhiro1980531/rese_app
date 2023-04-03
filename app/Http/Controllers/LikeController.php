@@ -8,7 +8,7 @@ use App\Models\Shop;
 use App\Models\Like;
 
 class LikeController extends Controller
-{
+{   
     public function likes(Shop $shop)
     {
         Like::create([
@@ -24,5 +24,13 @@ class LikeController extends Controller
         $like = Like::where('shop_id',$shop->id)->where('user_id',$user_id)->first();
         $like->delete();
         return redirect()->route('shop.index');
+    }
+
+    public function likeDelete(Like $like)
+    {
+        $user_id = Auth::id();
+        $like = Like::where('shop_id',$like->shop->id)->where('user_id',$user_id)->first();
+        $like->delete();
+        return redirect()->route('mypage');
     }
 }

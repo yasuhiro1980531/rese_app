@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Reserve;
 use App\Models\Like;
+use App\Models\Shop;
 
 class User extends Authenticatable
 {
@@ -54,4 +55,8 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function shop_likes()
+    {
+        return $this->belongsToMany(Shop::class,'likes','user_id','shop_id');
+    }
 }
