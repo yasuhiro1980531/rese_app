@@ -3,12 +3,10 @@
 会員登録
 @endsection
 <body class="text-center">
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        
     <div style="margin-top:100px;"class="container">
         <div class="row justify-content-center">
             <div class="col-md-4 mt-4">
+                <x-auth-validation-errors class="alert alert-danger mb-3" :errors="$errors" />
                 <form method="POST" action="{{ route('register') }}" class="border bg-white rounded">
                 @csrf
                         <!-- Name -->

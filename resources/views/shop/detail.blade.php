@@ -3,8 +3,9 @@
 店舗詳細
 @endsection
 @section('content')
+<body>
 <div class="container">
-@extends('layouts.header')
+@extends('layouts.sidebar')
   <div class="row justify-content-around">
     <div class="col-5">
       <div class="d-flex">
@@ -106,5 +107,6 @@
     </div>
   </div>
   <script src="{{asset('/js/reserve.js')}}"></script>
+</body>
 @endsection
 

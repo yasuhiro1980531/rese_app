@@ -4,7 +4,9 @@
 @endsection
 @section('content')
 <div class="container">
-@extends('layouts.header')
+  <div>
+    @extends('layouts.sidebar')
+  </div>
   <form id="form" name="searchform" method="get">
       @csrf  
   <div class="row justify-content-center mb-2">
@@ -43,19 +45,19 @@
           </div>
           <div class="d-flex justify-content-between">
             <a href="{{ route('shop.detail', ['id'=> $result->id]) }}" class="btn btn-primary mt-1 mb-2">詳しく見る</a>
-            <div>
-            @auth
-            @if($likes->where('user_id',$user_id)->where('shop_id',$result->id)->first())
-              <a href="{{ route('unlike', $result) }}">
-              <button><i class="fa fa-solid fa-heart" style="color: #f96262;"></i></button>
-              </a>
-            @else
-              <a href="{{ route('like', $result) }}">
-              <button><i id="heart" class="fa fa-regular fa-heart"></i></button>
-              </a>
-            @endif
-            @endauth
-            </div>
+          <div>
+          @auth
+          @if($likes->where('user_id',$user_id)->where('shop_id',$result->id)->first())
+            <a href="{{ route('unlike', $result) }}">  
+            <button id ="unlike"><i class="fa fa-solid fa-heart" style="color: #f96262;"></i></button>
+            </a>
+          @else
+            <a  href="{{ route('like', $result) }}">
+            <button id="like"><i class="fa fa-regular fa-heart"></i></button>
+            </a>
+          @endif
+          @endauth
+          </div>
           </div>
         </div>
     </div>

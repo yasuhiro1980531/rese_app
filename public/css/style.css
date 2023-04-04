@@ -7,6 +7,9 @@ button{
     appearance: none;
 }
 
+li{
+  list-style:none;
+}
 
 .fa{
   font-size: 30px;
@@ -68,6 +71,7 @@ body{
 
 .logout{
   border:none;
+  background-color: none;
 }
 
 .nav-link{

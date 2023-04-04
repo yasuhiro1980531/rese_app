@@ -2,11 +2,7 @@
 @section('title')
 ログイン
 @endsection
-
 <body class="text-center">
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        
     <div style="margin-top:100px;"class="container">
         <div class="row justify-content-center">
             <div class="col-md-4 mt-4">
@@ -14,7 +10,7 @@
                 <x-auth-session-status class="mb-4" :status="session('status')" />
 
                 <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                <x-auth-validation-errors class="alert alert-danger mb-3" :errors="$errors" />
 
                 <form method="POST" action="{{ route('login') }}" class="border bg-white rounded">
                     @csrf

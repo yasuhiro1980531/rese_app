@@ -3,9 +3,8 @@
 マイページ
 @endsection
 @section('content')
-
 <div class="container">
-  @extends('layouts.header')
+  @extends('layouts.sidebar')
   <div class="row justify-content-center">
     <div class="col-6"></div>
     <div class="col-6">
@@ -13,6 +12,7 @@
     </div>
     <div class="col-6">
       <h2>予約一覧</h2>
+      @if($reserves->where('user_id',$user->id)->first())
       @foreach($reserves as $reserve)
       <table class="text-white table p-2" id="table">
         <tr>
@@ -40,10 +40,15 @@
         </tr>
       </table>
       @endforeach
+      @else
+      <div class="col-8 alert alert-info mt-4 text-center" role="alert">
+        現在の予約はありません。
+      </div>
+      @endif
     </div>
     <div class="col-6">
-      
       <h2>お気に入り店舗</h2>
+      @if($likes->where('user_id',$user->id)->first())
       <div class="row row-cols-5 justify-content-center">
         @foreach($likes as $like)
         <div class="card m-2" style="width: 16rem;">
@@ -72,6 +77,11 @@
         </div>
         @endforeach
       </div>
+      @else
+        <div class="col-8 alert alert-info mt-4 text-center" role="alert">
+          お気に入り店舗はありません。
+        </div>
+      @endif
     </div>
   </div>
 </div>
