@@ -24,6 +24,7 @@ class ReserveRequest extends FormRequest
     public function rules()
     {
         return [
+            'shop_id' => 'required',
             'reserve_date' => 'required',
             'reserve_time' => 'required',
             'reserve_num' => 'required'

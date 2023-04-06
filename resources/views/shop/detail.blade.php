@@ -22,7 +22,7 @@
     </div>
     @auth
     <div class="col-5" >
-      <form method="post" action="{{ route('shop.reserve') }}">
+      <form method="post" action="{{ route('reserve.done') }}">
         @csrf
         <div class="reserve">
           <div class="p-3">

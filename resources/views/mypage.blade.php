@@ -17,10 +17,16 @@
       <table class="text-white table p-2" id="table">
         <tr>
           <th class="col-3"><i class="bi bi-clock"></i>予約</th>
-          <form action="{{ route('reserve.delete',['id' => $reserve->id]) }}" method="POST">
+          <td class="text-end">
+            <form action="{{ route('reserve.delete',['id' => $reserve->id]) }}" method="POST">
             @csrf
-          <td class="text-end"><button><i class="bi bi-x-circle"></i></button></td>
-          </form>
+              <button><i class="bi bi-x-circle"></i></button>
+            </form>
+            <a href="{{ route('reserve.edit',['id' => $reserve->id]) }}">
+              <button><i class="bi bi-pencil-square"></i></button>
+            </a>
+          </td>
+          
         </tr>
         <tr>
           <th class="text-center">Shop</th>

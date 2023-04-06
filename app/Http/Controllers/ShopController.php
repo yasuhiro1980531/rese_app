@@ -9,7 +9,7 @@ use App\Models\Genre;
 use App\Models\Reserve;
 use App\Models\Like;
 use App\Models\User;
-use App\Http\Requests\ReserveRequest;
+
 
 class ShopController extends Controller
 {
@@ -28,21 +28,10 @@ class ShopController extends Controller
         return view('shop.index',compact('shops','genres','user_id','genre_id','area','results','likes'));
     }
 
-    public function menu(){
-        return view('shop.menu');
-    }
-
     public function detail($id)
     {
         $shop = Shop::find($id);
         return view('shop.detail',compact('shop'));
-    }
-
-    public function reserve(ReserveRequest $request)
-    {
-        $reserveInfo = $request->all();
-        Reserve::create($reserveInfo);
-        return view('shop.done',compact('reserveInfo'));
     }
 
     public function mypage()
@@ -51,12 +40,5 @@ class ShopController extends Controller
         $likes = Like::where('user_id',Auth::id())->get();
         $reserves = Reserve::where('user_id',Auth::id())->get();
         return view('mypage',compact('user','likes','reserves'));
-    }
-
-    public function delete($id)
-    {
-        $reserve = Reserve::find($id);
-        $reserve->delete();
-        return redirect()->route('mypage');
     }
 }

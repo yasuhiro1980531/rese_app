@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ReserveController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,17 +36,23 @@ require __DIR__.'/auth.php';
 
 Route::get('/',[ShopController::class,'index'])->name('shop.index');
 
+Route::get('/detail/:shop_id/{id}',[ShopController::class,'detail'])->name('shop.detail');
+
+Route::get('/mypage',[ShopController::class,'mypage'])->name('mypage');
+
+Route::post('/done',[ReserveController::class,'reserve'])->name('reserve.done');
+
+Route::get('/mypage/edit/{id}',[ReserveController::class,'edit'])->name('reserve.edit');
+
+Route::post('/mypage/update/{id}',[ReserveController::class,'update'])->name('reserve.update');
+
+Route::post('/mypage/delete/{id}',[ReserveController::class,'delete'])->name('reserve.delete');
+
 Route::get('/like/{shop}',[LikeController::class,'likes'])->name('like');
 
 Route::get('/unlike/{shop}',[LikeController::class,'unlikes'])->name('unlike');
 
-Route::get('/detail/:shop_id/{id}',[ShopController::class,'detail'])->name('shop.detail');
-
-Route::post('/done',[ShopController::class,'reserve'])->name('shop.reserve');
-
-Route::get('/mypage',[ShopController::class,'mypage'])->name('mypage');
-
-Route::post('/mypage/{id}',[ShopController::class,'delete'])->name('reserve.delete');
-
 Route::get('/mypage/unlike/{like}',[LikeController::class,'likeDelete'])->name('mypage.likeDelete');
+
+
 
