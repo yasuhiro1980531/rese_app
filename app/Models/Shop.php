@@ -17,7 +17,7 @@ class Shop extends Model
         'name',
         'area',
         'genre_id',
-        'detail',
+        'text',
         'image_url'
     ];
 

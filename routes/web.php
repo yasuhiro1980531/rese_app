@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReserveController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,5 +55,14 @@ Route::get('/unlike/{shop}',[LikeController::class,'unlikes'])->name('unlike');
 
 Route::get('/mypage/unlike/{like}',[LikeController::class,'likeDelete'])->name('mypage.likeDelete');
 
+Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
 
+Route::get('/admin/show',[AdminController::class,'show'])->name('admin.show');
 
+Route::post('/admin/show',[AdminController::class,'add'])->name('admin.add');
+
+Route::get('/admin/edit/{id}',[AdminController::class,'edit'])->name('admin.edit');
+
+Route::post('/admin/update/{id}',[AdminController::class,'update'])->name('admin.update');
+
+Route::post('/admin/delete/{id}',[AdminController::class,'delete'])->name('admin.delete');

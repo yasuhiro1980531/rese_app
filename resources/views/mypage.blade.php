@@ -56,6 +56,7 @@
       <h2>お気に入り店舗</h2>
       @if($likes->where('user_id',$user->id)->first())
       <div class="row row-cols-5 justify-content-center">
+        @if($likes !== null)
         @foreach($likes as $like)
         <div class="card m-2" style="width: 16rem;">
           <img src="{{$like->shop->image_url}}">
@@ -67,21 +68,33 @@
               </div>
               <div class="d-flex justify-content-between">
                 <a href="{{ route('shop.detail', ['id'=>$like->shop->id]) }}" class="btn btn-primary">詳しく見る</a>
-              <div>
-                @if($likes->where('user_id',Auth::id())->where('shop_id',$like->shop->id)->first())
-                  <a href="{{ route('mypage.likeDelete',$like) }}">
+                <a href="{{ route('mypage.likeDelete',$like) }}">
                   <button><i class="fa fa-solid fa-heart" style="color: #f96262;"></i></button>
                   </a>
-                @else
-                  <a href="{{ route('like', $like) }}">
-                  <button><i id="heart" class="fa fa-regular fa-heart"></i></button>
-                  </a>
-                @endif
-              </div>
               </div>
             </div>
         </div>
         @endforeach
+        @else
+        @foreach($likes as $like)
+        <div class="card m-2" style="width: 16rem;">
+          <img src="{{$like->shop->image_url}}">
+            <div class="p-3"> 
+              <h2 class="fw-bold">{{$like->shop->name}}</h2>
+              <div class="d-flex">
+                <p class=mr-1>#{{$like->shop->area}}</p>
+                <p>#{{$like->shop->genre->name}}</p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <a href="{{ route('shop.detail', ['id'=>$like->shop->id]) }}" class="btn btn-primary">詳しく見る</a>
+                  <a href="{{ route('like', $like) }}">
+                  <button><i id="heart" class="fa fa-regular fa-heart"></i></button>
+                  </a>
+              </div>
+            </div>
+        </div>
+        @endforeach
+        @endif
       </div>
       @else
         <div class="col-8 alert alert-info mt-4 text-center" role="alert">

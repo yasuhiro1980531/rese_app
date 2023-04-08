@@ -12,8 +12,7 @@
         <a href="{{route('shop.index')}}"><i class="bi bi-chevron-left return_btn"></i></a>
       <h2 class="mb-3">{{ $shop->name }}</h2>
       </div>
-      
-      <img src="{{ $shop->image_url }}" class="w-100 mb-3">
+      <img src="{{ asset($shop->image_url) }}" class="w-100 mb-3">
       <div class="d-flex">
         <p>#{{ $shop->area }}</p>
         <p>#{{ $shop->genre->name}}</p>

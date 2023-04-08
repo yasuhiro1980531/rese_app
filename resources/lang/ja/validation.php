@@ -157,6 +157,10 @@ return [
         'reserve_date' => '予約日時',
         'reserve_time' => '予約時間',
         'reserve_num' => '予約人数',
+        'name' => '名前',
+        'area' => '地域',
+        'text' => '本文',
+        'genre' => 'ジャンル'
     ],
 
 ];
