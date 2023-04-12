@@ -18,14 +18,17 @@ class AdminController extends Controller
 
     public function show()
     {
-        return view('admin.add');
+        $genres = Genre::all();
+        return view('admin.add',compact('genres'));
     }
 
     public function add(Request $request)
     {
-        //dd($request['image_url']);
-        $file_name = $request->image_url->getClientOriginalName();
-        $img = $request->image_url->storeAs('storage/shopImage',$file_name);
+        $img = $request->file('image_url');
+        if(is_file($img)){
+            $file_name = $request->image_url->getClientOriginalName();
+            $img = $request->image_url->storeAs('public/shopImage',$file_name);
+        }
         Shop::create([
             'name' => $request['name'],
             'area' => $request['area'],
@@ -39,13 +42,17 @@ class AdminController extends Controller
     public function edit($id)
     {
         $shops = Shop::find($id);
-        return view('admin.edit',compact('shops'));
+        $genres = Genre::all();
+        return view('admin.edit',compact('shops','genres'));
     }
 
     public function update(AdminRequest $request)
     {
-        $file_name = $request->image_url->getClientOriginalName();
-        $img = $request->image_url->storeAs('storage/shopImage',$file_name);
+        $img = $request->file('image_url');
+        if(is_file($img)){
+            $file_name = $request->image_url->getClientOriginalName();
+            $img = $request->image_url->storeAs('public/shopImage',$file_name);
+        }
         Shop::where('id',$request->id)->update([
             'name' => $request['name'],
             'area' => $request['area'],

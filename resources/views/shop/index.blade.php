@@ -36,7 +36,7 @@
   <div class="row row-cols-5 justify-content-center">
     @foreach($results as $result)
     <div class="card m-2" style="width: 18rem;">
-      <img src="{{ asset($result->image_url) }}">
+      <img src="{{ \Storage::url($result->image_url) }}" style="padding-top:12px;">
         <div class="p-3"> 
           <h2 class="fw-bold">{{$result->name}}</h2>
           <div class="d-flex">

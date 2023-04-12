@@ -59,7 +59,7 @@
         @if($likes !== null)
         @foreach($likes as $like)
         <div class="card m-2" style="width: 16rem;">
-          <img src="{{$like->shop->image_url}}">
+          <img src="{{ \Storage::url($like->shop->image_url) }}" style="padding-top:10px;">
             <div class="p-3"> 
               <h2 class="fw-bold">{{$like->shop->name}}</h2>
               <div class="d-flex">

@@ -3,9 +3,9 @@
 店舗情報変更
 @endsection
 @section('content')
-<div style="margin-top:100px;"class="container">
+<div class="container">
   <div class="row justify-content-center">
-    <div class="col-8 col-md-4 mt-4">
+    <div class="col-10 m-auto mt-5">
       <div class="card text-center">
         <div class="card-body">
           <div class="p-3">
@@ -31,7 +31,13 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('genre') }}</p>
               @endif
-              <input type="text" name="genre_id" value="{{$shops->genre->name}}" class="form-control">
+              <select id="genre" name="genre_id" class="form-select">
+              <option value="{{$shops->genre->id}}">{{$shops->genre->name}}</option>
+              @foreach($genres as $genre)
+              <option value="{{$genre->id}}">{{ $genre->name }}</option>
+              @endforeach
+              </select>
+              <p class="mt-3 text-danger text-start">※ジャンルがない場合は<a href="#">こちら</a>からジャンルを追加してください</p>
             </div>
             <div class="mb-3">
               @if ($errors->has('text'))
