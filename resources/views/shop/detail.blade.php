@@ -10,7 +10,7 @@
     <div class="col-5">
       <div class="d-flex">
         <a href="{{route('shop.index')}}"><i class="bi bi-chevron-left return_btn"></i></a>
-      <h2 class="mb-3">{{ $shop->name }}</h2>
+      <h2 class="mb-3">{{ $shop->shop_name }}</h2>
       </div>
       <img src="{{ \Storage::url($shop->image_url) }}" class="w-100 mb-3">
       <div class="d-flex">
@@ -68,7 +68,7 @@
             <table class="text-white table" id="table">
               <tr>
                 <th class="col-4">Shop</th>
-                <td>{{ $shop->name }}</td>
+                <td>{{ $shop->shop_name }}</td>
               </tr>
               <tr>
                 <th>Date</th>

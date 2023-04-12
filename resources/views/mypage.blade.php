@@ -30,7 +30,7 @@
         </tr>
         <tr>
           <th class="text-center">Shop</th>
-          <td>{{$reserve->shop->name}}</td>
+          <td>{{$reserve->shop->shop_name}}</td>
         </tr>
         <tr>
           <th class="text-center">Date</th>
@@ -61,7 +61,7 @@
         <div class="card m-2" style="width: 16rem;">
           <img src="{{ \Storage::url($like->shop->image_url) }}" style="padding-top:10px;">
             <div class="p-3"> 
-              <h2 class="fw-bold">{{$like->shop->name}}</h2>
+              <h2 class="fw-bold">{{$like->shop->shop_name}}</h2>
               <div class="d-flex">
                 <p class=mr-1>#{{$like->shop->area}}</p>
                 <p>#{{$like->shop->genre->name}}</p>

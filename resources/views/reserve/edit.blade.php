@@ -19,9 +19,9 @@
                   {{ $errors->first('shop_id') }}</p>
               @endif
               <select name="shop_id" class="form-select mb-3">
-              <option value="{{$reserves->shop->id }}">{{ $reserves->shop->name }}</option>
+              <option value="{{$reserves->shop->id }}">{{ $reserves->shop->shop_name }}</option>
               @foreach($shops as $shop)
-              <option value="{{$shop->id }}">{{ $shop->name }}</option>
+              <option value="{{$shop->id }}">{{ $shop->shop_name }}</option>
               @endforeach
             </div>
             <div class="mb-3">

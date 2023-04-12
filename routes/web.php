@@ -5,6 +5,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManagerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,3 +67,9 @@ Route::get('/admin/edit/{id}',[AdminController::class,'edit'])->name('admin.edit
 Route::post('/admin/update/{id}',[AdminController::class,'update'])->name('admin.update');
 
 Route::post('/admin/delete/{id}',[AdminController::class,'delete'])->name('admin.delete');
+
+Route::get('/manager',[ManagerController::class,'index'])->name('manager.index');
+
+Route::get('/manager/edit/{id}',[ManagerController::class,'edit'])->name('manager.edit');
+
+Route::post('/manager/update/{id}',[ManagerController::class,'update'])->name('manager.update');

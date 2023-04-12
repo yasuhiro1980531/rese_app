@@ -14,11 +14,12 @@ class Shop extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'shop_name',
         'area',
         'genre_id',
         'text',
-        'image_url'
+        'image_url',
+        'manager_id'
     ];
 
     public function genre()
@@ -31,7 +32,7 @@ class Shop extends Model
         return $this->hasMany(Reserve::class);
     }
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }

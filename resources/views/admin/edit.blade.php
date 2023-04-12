@@ -17,7 +17,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('name') }}</p>
               @endif
-              <input type="text" name="name" value="{{$shops->name}}" class="form-control">
+              <input type="text" name="name" value="{{$shops->shop_name}}" class="form-control">
             </div>
             <div class="mb-3">
               @if ($errors->has('area'))

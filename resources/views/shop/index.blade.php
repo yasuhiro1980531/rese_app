@@ -38,7 +38,7 @@
     <div class="card m-2" style="width: 18rem;">
       <img src="{{ \Storage::url($result->image_url) }}" style="padding-top:12px;">
         <div class="p-3"> 
-          <h2 class="fw-bold">{{$result->name}}</h2>
+          <h2 class="fw-bold">{{$result->shop_name}}</h2>
           <div class="d-flex">
             <p class=mr-1>#{{$result->area}}</p>
             <p>#{{$result->genre->name}}</p>

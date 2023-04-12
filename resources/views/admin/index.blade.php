@@ -22,6 +22,7 @@
           <th scope="col">店名</th>
           <th scope="col">エリア</th>
           <th scope="col">ジャンル</th>
+          <th scope="col">店長</th>
           <th scope="col">編集</th>
           <th scope="col">削除</th>
         </tr>
@@ -30,16 +31,17 @@
         @foreach($shops as $shop)
         <tr>
           <th scope="row">{{ $shop->id}}</th>
-          <td>{{ $shop->name}}</td>
+          <td>{{ $shop->shop_name}}</td>
           <td>{{ $shop->area}}</td>
           <td>{{ $shop->genre->name }}</td>
+          <td></td>
           <td><a href="{{route('admin.edit',['id'=> $shop->id])}}">
             <button class="btn btn-success">編集</button>
           </a></td>
           <td>
             <form action="{{route('admin.delete',['id'=> $shop->id])}}" method="post">
               @csrf
-            <button class="btn btn-danger">削除</button>
+            <button id="deleteBtn" class="btn btn-danger">削除</button>
           </form>
             </td>
         </tr>
@@ -49,4 +51,5 @@
     </div>
   </div>
 </div>
+<!-- <script src="{{asset('/js/admin.js')}}"></script> -->
 @endsection

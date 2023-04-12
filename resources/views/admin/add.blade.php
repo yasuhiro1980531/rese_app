@@ -13,7 +13,7 @@
           @csrf
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">店名</label>
-          <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="店名を入力してください">
+          <input type="text" name="shop_name" class="form-control" id="exampleFormControlInput1" placeholder="店名を入力してください">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">エリア</label>
@@ -27,7 +27,6 @@
           <option value="{{ $genre->id }}">{{ $genre->name }}</option>
           @endforeach
           </select>
-          <p class="mt-3 text-danger">※ジャンルがない場合は<a href="#">こちら</a>からジャンルを追加してください</p>
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">店舗紹介文</label>
@@ -36,10 +35,25 @@
         <div class="mb-3">
           <label for="formFile" class="form-label">店舗画像</label>
           <input class="form-control" type="file" id="formFile" name="image_url">
-        </div> 
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">店長名</label>
+          <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="店長名を入力してください">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">メールアドレス</label>
+          <input type="email" name="email"class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力してください">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">パスワード</label>
+          <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="パスワードを入力してください">
+        </div>
+        <div class="mb-3">
+          <input type="hidden" name="manager_id"class="form-control">
+        </div>
         <div class="mt-5 mb-3 text-center">
           <a href="{{ route('admin.add') }}">
-            <button class="p-3 btn btn-primary w-50">新規店舗を追加</button>
+            <button class="p-3 btn btn-primary w-50">新規店舗を追加する</button>
           </a>
         </form>
         </div>

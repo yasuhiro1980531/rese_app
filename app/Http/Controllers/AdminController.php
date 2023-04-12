@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Shop;
 use App\Models\Genre;
 use Illuminate\Http\Request;
@@ -29,12 +30,19 @@ class AdminController extends Controller
             $file_name = $request->image_url->getClientOriginalName();
             $img = $request->image_url->storeAs('public/shopImage',$file_name);
         }
-        Shop::create([
+        $newManager = User::create([
             'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => $request['password']
+        ]);
+
+        Shop::create([
+            'shop_name' => $request['shop_name'],
             'area' => $request['area'],
             'genre_id' => $request['genre_id'],
             'text' => $request['text'],
-            'image_url' => $img
+            'image_url' => $img,
+            'manager_id' => $newManager->id
         ]);
         return redirect()->route('admin.index');
     }
@@ -54,7 +62,7 @@ class AdminController extends Controller
             $img = $request->image_url->storeAs('public/shopImage',$file_name);
         }
         Shop::where('id',$request->id)->update([
-            'name' => $request['name'],
+            'shop_name' => $request['shop_name'],
             'area' => $request['area'],
             'genre_id' => $request['genre_id'],
             'text' => $request['text'],
