@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Shop;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AdminRequest;
 
 class AdminController extends Controller
@@ -33,7 +34,8 @@ class AdminController extends Controller
         $newManager = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => $request['password']
+            'password' => Hash::make($request['password']),
+            'role' => $request['role']
         ]);
 
         Shop::create([

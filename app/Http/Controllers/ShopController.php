@@ -37,8 +37,10 @@ class ShopController extends Controller
     public function mypage()
     {
         $user = Auth::user();
+        $shops = Shop::all();
+        $myShops = Shop::where('manager_id',Auth::id())->get();
         $likes = Like::where('user_id',Auth::id())->get();
         $reserves = Reserve::where('user_id',Auth::id())->get();
-        return view('mypage',compact('user','likes','reserves'));
+        return view('mypage',compact('user','myShops','shops','likes','reserves'));
     }
 }

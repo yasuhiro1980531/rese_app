@@ -24,7 +24,7 @@ class AdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'shop_name' => 'required',
             'area' => 'required',
             'text' => 'required'
         ];

@@ -40,36 +40,29 @@ Route::get('/',[ShopController::class,'index'])->name('shop.index');
 
 Route::get('/detail/:shop_id/{id}',[ShopController::class,'detail'])->name('shop.detail');
 
-Route::get('/mypage',[ShopController::class,'mypage'])->name('mypage');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/mypage',[ShopController::class,'mypage'])->name('mypage');
+    Route::post('/done',[ReserveController::class,'reserve'])->name('reserve.done');
+    Route::get('/mypage/edit/{id}',[ReserveController::class,'edit'])->name('reserve.edit');
+    Route::post('/mypage/update/{id}',[ReserveController::class,'update'])->name('reserve.update');
+    Route::post('/mypage/delete/{id}',[ReserveController::class,'delete'])->name('reserve.delete');
+    Route::get('/like/{shop}',[LikeController::class,'likes'])->name('like');
+    Route::get('/unlike/{shop}',[LikeController::class,'unlikes'])->name('unlike');
+    Route::get('/mypage/unlike/{like}',[LikeController::class,'likeDelete'])->name('mypage.likeDelete');
+});
 
-Route::post('/done',[ReserveController::class,'reserve'])->name('reserve.done');
+Route::group(['middleware' => 'auth.admin'], function () {
+    Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
+    Route::get('/admin/show',[AdminController::class,'show'])->name('admin.show');
+    Route::post('/admin/show',[AdminController::class,'add'])->name('admin.add');
+    Route::get('/admin/edit/{id}',[AdminController::class,'edit'])->name('admin.edit');
+    Route::post('/admin/update/{id}',[AdminController::class,'update'])->name('admin.update');
+    Route::post('/admin/delete/{id}',[AdminController::class,'delete'])->name('admin.delete');
+});
 
-Route::get('/mypage/edit/{id}',[ReserveController::class,'edit'])->name('reserve.edit');
 
-Route::post('/mypage/update/{id}',[ReserveController::class,'update'])->name('reserve.update');
-
-Route::post('/mypage/delete/{id}',[ReserveController::class,'delete'])->name('reserve.delete');
-
-Route::get('/like/{shop}',[LikeController::class,'likes'])->name('like');
-
-Route::get('/unlike/{shop}',[LikeController::class,'unlikes'])->name('unlike');
-
-Route::get('/mypage/unlike/{like}',[LikeController::class,'likeDelete'])->name('mypage.likeDelete');
-
-Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
-
-Route::get('/admin/show',[AdminController::class,'show'])->name('admin.show');
-
-Route::post('/admin/show',[AdminController::class,'add'])->name('admin.add');
-
-Route::get('/admin/edit/{id}',[AdminController::class,'edit'])->name('admin.edit');
-
-Route::post('/admin/update/{id}',[AdminController::class,'update'])->name('admin.update');
-
-Route::post('/admin/delete/{id}',[AdminController::class,'delete'])->name('admin.delete');
-
-Route::get('/manager',[ManagerController::class,'index'])->name('manager.index');
-
-Route::get('/manager/edit/{id}',[ManagerController::class,'edit'])->name('manager.edit');
-
-Route::post('/manager/update/{id}',[ManagerController::class,'update'])->name('manager.update');
+Route::group(['middleware' => 'auth.manager'], function () {
+    Route::get('/manager',[ManagerController::class,'index'])->name('manager.index');
+    Route::get('/manager/edit/{id}',[ManagerController::class,'edit'])->name('manager.edit');
+    Route::post('/manager/update/{id}',[ManagerController::class,'update'])->name('manager.update');
+});

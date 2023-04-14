@@ -4,4 +4,3 @@
 @endsection
 @section('content')
 
-店舗画面と予約一覧を表示する

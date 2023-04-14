@@ -13,11 +13,11 @@
             <form action="{{ route('admin.update',['id' => $shops->id]) }}" method="POST" enctype="multipart/form-data">
               @csrf
             <div class="mb-3">
-              @if ($errors->has('name'))
+              @if ($errors->has('shop_name'))
                 <p class="alert alert-danger mt-2">
-                  {{ $errors->first('name') }}</p>
+                  {{ $errors->first('shop_name') }}</p>
               @endif
-              <input type="text" name="name" value="{{$shops->shop_name}}" class="form-control">
+              <input type="text" name="shop_name" value="{{$shops->shop_name}}" class="form-control">
             </div>
             <div class="mb-3">
               @if ($errors->has('area'))
@@ -37,7 +37,6 @@
               <option value="{{$genre->id}}">{{ $genre->name }}</option>
               @endforeach
               </select>
-              <p class="mt-3 text-danger text-start">※ジャンルがない場合は<a href="#">こちら</a>からジャンルを追加してください</p>
             </div>
             <div class="mb-3">
               @if ($errors->has('text'))

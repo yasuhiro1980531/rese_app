@@ -31,6 +31,9 @@
                                             placeholder="Password"
                                             required autocomplete="new-password" />
                         </div>
+                        <div>
+                            <input type="hidden" name="role" value="user">
+                        </div>
                             <div class="mt-4 d-flex justify-content-end p-3">
                             <x-button class="btn btn-primary mb-4">
                                 {{ __('Register') }}

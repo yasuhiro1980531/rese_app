@@ -160,7 +160,8 @@ return [
         'name' => '名前',
         'area' => '地域',
         'text' => '本文',
-        'genre' => 'ジャンル'
+        'genre' => 'ジャンル',
+        'shop_name' => '店名' 
     ],
 
 ];

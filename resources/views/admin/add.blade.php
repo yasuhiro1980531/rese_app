@@ -30,7 +30,7 @@
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">店舗紹介文</label>
-          <textarea type="text" name="text" class="form-control" id="exampleFormControlInput1"  rows="5" placeholder="店舗紹介文を入力してください"></textarea>
+          <textarea type="text" name="text" class="form-control" rows="5" placeholder="店舗紹介文を入力してください"></textarea>
         </div>
         <div class="mb-3">
           <label for="formFile" class="form-label">店舗画像</label>
@@ -38,15 +38,18 @@
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">店長名</label>
-          <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="店長名を入力してください">
+          <input type="text" name="name" class="form-control" placeholder="店長名を入力してください">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">メールアドレス</label>
-          <input type="email" name="email"class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力してください">
+          <input type="email" name="email"class="form-control"  placeholder="メールアドレスを入力してください">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">パスワード</label>
-          <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="パスワードを入力してください">
+          <input type="password" name="password" class="form-control" placeholder="パスワードを入力してください">
+        </div>
+        <div>
+          <input type="hidden" name="role" value="manager">
         </div>
         <div class="mb-3">
           <input type="hidden" name="manager_id"class="form-control">
