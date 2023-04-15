@@ -3,7 +3,6 @@
 新店舗追加画面
 @endsection
 @section('content')
-
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-10 m-auto">

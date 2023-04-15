@@ -46,7 +46,7 @@ class AdminController extends Controller
             'image_url' => $img,
             'manager_id' => $newManager->id
         ]);
-        return redirect()->route('admin.index');
+        return redirect()->route('mypage');
     }
 
     public function edit($id)

@@ -160,6 +160,12 @@
           <th class="text-center">Number</th>
           <td id="reserveNum">{{$reserve->reserve_num}}人</td>
         </tr>
+        <tr>
+          <th></th>
+          <td class="text-end">
+            <a href="{{route('eva.index',['id' => $reserve->shop->id]) }}" class="text-white">お店の評価を投稿する</a>
+          </td>
+        </tr>
       </table>
       @endforeach
       @else

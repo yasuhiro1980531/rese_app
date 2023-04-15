@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Reserve;
 use App\Models\Like;
 use App\Models\Shop;
+use App\Models\Evaluation;
 
 class User extends Authenticatable
 {
@@ -59,6 +60,11 @@ class User extends Authenticatable
     public function shops()
     {
         return $this->hasMany(Shop::class);
+    }
+
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
     }
 
     public function shop_likes()

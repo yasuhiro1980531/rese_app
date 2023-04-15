@@ -6,6 +6,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\EvaluationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,7 +38,6 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/',[ShopController::class,'index'])->name('shop.index');
-
 Route::get('/detail/:shop_id/{id}',[ShopController::class,'detail'])->name('shop.detail');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/like/{shop}',[LikeController::class,'likes'])->name('like');
     Route::get('/unlike/{shop}',[LikeController::class,'unlikes'])->name('unlike');
     Route::get('/mypage/unlike/{like}',[LikeController::class,'likeDelete'])->name('mypage.likeDelete');
+    Route::get('/mypage/eva/{id}',[EvaluationController::class,'index'])->name('eva.index');
+    Route::post('/mypage/eva',[EvaluationController::class,'add'])->name('eva.add');
 });
 
 Route::group(['middleware' => 'auth.admin'], function () {

@@ -8,6 +8,7 @@ use App\Models\Genre;
 use App\Models\Reserve;
 use App\Models\Like;
 use App\Models\User;
+use App\Models\Evaluation;
 
 class Shop extends Model
 {
@@ -40,6 +41,11 @@ class Shop extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
     }
 
     public static function doSearch($keyword,$genre_id,$area)
