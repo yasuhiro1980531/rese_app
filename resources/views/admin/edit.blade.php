@@ -12,25 +12,28 @@
             <h2 class="mb-3">店舗情報変更</h2>
             <form action="{{ route('admin.update',['id' => $shops->id]) }}" method="POST" enctype="multipart/form-data">
               @csrf
-            <div class="mb-3">
+            <div class="mb-3 text-start">
               @if ($errors->has('shop_name'))
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('shop_name') }}</p>
               @endif
+              <label class="form-label">店名</label>
               <input type="text" name="shop_name" value="{{$shops->shop_name}}" class="form-control">
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-start">
               @if ($errors->has('area'))
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('area') }}</p>
               @endif
+              <label class="form-label">エリア</label>
               <input type="text" name="area" value="{{$shops->area}}" class="form-control">
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-start">
               @if ($errors->has('genre'))
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('genre') }}</p>
               @endif
+              <label class="form-label">ジャンル</label>
               <select id="genre" name="genre_id" class="form-select">
               <option value="{{$shops->genre->id}}">{{$shops->genre->name}}</option>
               @foreach($genres as $genre)
@@ -38,14 +41,20 @@
               @endforeach
               </select>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-start">
               @if ($errors->has('text'))
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('text') }}</p>
               @endif
+              <label class="form-label">店舗紹介文</label>
               <input type="text" name="text" value="{{ $shops->text }}" class="form-control" style="height:120px;">
             </div>
+            <div class="mb-5 text-start">
+              <p>現在の店舗画像</p>
+              <img src="{{ \Storage::url($shops->image_url) }}" class="w-50">
+            </div> 
             <div class="mb-3">
+              <p class="text-start text-danger">画像を変更したい場合はこちらから選択してください</p>
               <input class="form-control" type="file" value="{{ $shops->image_url }}" id="formFile" name="image_url">
             </div> 
               <button class="btn btn-primary p-2 mt-3">店舗情報を更新する</button>

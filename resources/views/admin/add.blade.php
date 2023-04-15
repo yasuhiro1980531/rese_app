@@ -12,15 +12,15 @@
         <form action="" method="post" enctype="multipart/form-data">
           @csrf
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">店名</label>
-          <input type="text" name="shop_name" class="form-control" id="exampleFormControlInput1" placeholder="店名を入力してください">
+          <label class="form-label">店名</label>
+          <input type="text" name="shop_name" class="form-control"  placeholder="店名を入力してください">
         </div>
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">エリア</label>
-          <input type="text" name="area"class="form-control" id="exampleFormControlInput1" placeholder="エリアを入力してください">
+          <label class="form-label">エリア</label>
+          <input type="text" name="area"class="form-control" placeholder="エリアを入力してください">
         </div>
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">ジャンル</label>
+          <label class="form-label">ジャンル</label>
           <select id="genre" name="genre_id" class="form-select">
           <option value="">ジャンルを選択してください</option>
           @foreach($genres as $genre)
@@ -29,7 +29,7 @@
           </select>
         </div>
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">店舗紹介文</label>
+          <label class="form-label">店舗紹介文</label>
           <textarea type="text" name="text" class="form-control" rows="5" placeholder="店舗紹介文を入力してください"></textarea>
         </div>
         <div class="mb-3">

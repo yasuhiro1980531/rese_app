@@ -23,51 +23,50 @@
           <button class="btn btn-primary px-4 py-3">店舗情報を編集する</button>
           </a>
         </div>
-
       @endforeach
     </div>
     <div class="col-5">
       <h2>予約一覧</h2>
-      @if($reserves->where('shop_id')->first())
-      @foreach($reserves as $reserve)
+      @if($myReserves == null)
+      <div class="col-8 alert alert-info mt-4 text-center" role="alert">
+        現在の予約はありません。
+      </div>
+      @else
+      @foreach($myReserves as $myReserve)
       <table class="text-white table p-2" id="table">
         <tr>
           <th class="col-3"><i class="bi bi-clock"></i>予約</th>
           <td class="text-end">
-            <form action="{{ route('reserve.delete',['id' => $reserve->id]) }}" method="POST">
+            <form action="{{ route('reserve.delete',['id' => $myReserve->id]) }}" method="POST">
             @csrf
               <button><i class="bi bi-x-circle"></i></button>
             </form>
-            <a href="{{ route('reserve.edit',['id' => $reserve->id]) }}">
+            <a href="{{ route('reserve.edit',['id' => $myReserve->id]) }}">
               <button><i class="bi bi-pencil-square"></i></button>
             </a>
           </td>
-          
         </tr>
         <tr>
-          <th class="text-center">Shop</th>
-          <td>{{$reserve->shop->shop_name}}</td>
+          <th class="text-center">予約者</th>
+          <td>{{$myReserve->user->name}}</td>
         </tr>
         <tr>
           <th class="text-center">Date</th>
-          <td id="reserveDate">{{$reserve->reserve_date}}</td>
+          <td id="reserveDate">{{$myReserve->reserve_date}}</td>
         </tr>
         <tr>
           <th class="text-center">Time</th>
-          <td id="reserveTime">{{$reserve->reserve_time}}</td>
+          <td id="reserveTime">{{$myReserve->reserve_time}}</td>
         </tr>
         <tr>
           <th class="text-center">Number</th>
-          <td id="reserveNum">{{$reserve->reserve_num}}人</td>
+          <td id="reserveNum">{{$myReserve->reserve_num}}人</td>
         </tr>
       </table>
       @endforeach
-      @else
-      <div class="col-8 alert alert-info mt-4 text-center" role="alert">
-        現在の予約はありません。
-      </div>
       @endif
 @endif
+
 @if (auth()->user()->role === 'administrator')
 <div class="container">
   <div class="row justify-content-center mt-5">
@@ -88,7 +87,7 @@
           <th scope="col">店名</th>
           <th scope="col">エリア</th>
           <th scope="col">ジャンル</th>
-          <th scope="col">店長</th>
+          <th scope="col">店長ID</th>
           <th scope="col">編集</th>
           <th scope="col">削除</th>
         </tr>
@@ -100,7 +99,7 @@
           <td>{{ $shop->shop_name}}</td>
           <td>{{ $shop->area}}</td>
           <td>{{ $shop->genre->name }}</td>
-          <td></td>
+          <td>{{ $shop->manager_id}}</td>
           <td><a href="{{route('admin.edit',['id'=> $shop->id])}}">
             <button class="btn btn-success">編集</button>
           </a></td>
@@ -118,6 +117,7 @@
   </div>
 </div>
 @endif
+
 @if (auth()->user()->role === 'user')
 <div class="container">
 @extends('layouts.sidebar')

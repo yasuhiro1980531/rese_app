@@ -34,13 +34,19 @@ class ManagerController extends Controller
             $file_name = $request->image_url->getClientOriginalName();
             $img = $request->image_url->storeAs('public/shopImage',$file_name);
         }
-        Shop::where('id',$request->id)->update([
-            'shop_name' => $request['shop_name'],
-            'area' => $request['area'],
-            'genre_id' => $request['genre_id'],
-            'text' => $request['text'],
-            'image_url' => $img
-        ]);
+        
+        $new_shop = Shop::where('id',$request->id)->first();
+        $new_shop->shop_name = $request['shop_name'];
+        $new_shop->area = $request['area'];
+        $new_shop->genre_id = $request['genre_id'];
+        $new_shop->text = $request['text'];
+        
+        if($img !== null){
+            $new_shop->image_url = $img;
+        }
+
+        $new_shop->save();
+            
         return redirect()->route('mypage');
     }
 }

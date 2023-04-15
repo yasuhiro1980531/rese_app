@@ -38,9 +38,17 @@ class ShopController extends Controller
     {
         $user = Auth::user();
         $shops = Shop::all();
-        $myShops = Shop::where('manager_id',Auth::id())->get();
+        
+        if (auth()->user()->role === 'manager'){
+            $myShops = Shop::where('manager_id',Auth::id())->get();
+            foreach($myShops as $myShop)
+            $myReserves = Reserve::where('shop_id',$myShop->id)->get();
+
+            return view('mypage',compact('user','myShops','myReserves','shops'));
+        }
+
         $likes = Like::where('user_id',Auth::id())->get();
         $reserves = Reserve::where('user_id',Auth::id())->get();
-        return view('mypage',compact('user','myShops','shops','likes','reserves'));
+        return view('mypage',compact('user','shops','likes','reserves'));
     }
 }
