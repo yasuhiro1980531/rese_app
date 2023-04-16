@@ -27,7 +27,7 @@
     </div>
     <div class="col-5">
       <h2>予約一覧</h2>
-      @if($myReserves == null)
+      @if($myReserve == null)
       <div class="col-8 alert alert-info mt-4 text-center" role="alert">
         現在の予約はありません。
       </div>
@@ -130,6 +130,20 @@
       <h2>予約一覧</h2>
       @if($reserves->where('user_id',$user->id)->first())
       @foreach($reserves as $reserve)
+      @if($date >= $reserve->reserve_date)
+      <div class="card text-center mb-5">
+        <div class="card-body">
+          <p class="card-text">{{$reserve->reserve_date}}に訪れた<span class="fw-bold">{{$reserve->shop->shop_name}}</span>はいかがでしたか？</p>
+          <div class="d-flex justify-content-around">
+            <a href="{{route('eva.index',['id' => $reserve->shop->id]) }}" class="btn btn-primary">評価する</a>
+          <form action="{{ route('reserve.delete',['id' => $reserve->id]) }}" method="POST">
+            @csrf
+              <button class="btn btn-secondary">評価しない</button>
+          </form>
+          </div>
+        </div>
+      </div>
+      @else
       <table class="text-white table p-2" id="table">
         <tr>
           <th class="col-3"><i class="bi bi-clock"></i>予約</th>
@@ -160,13 +174,8 @@
           <th class="text-center">Number</th>
           <td id="reserveNum">{{$reserve->reserve_num}}人</td>
         </tr>
-        <tr>
-          <th></th>
-          <td class="text-end">
-            <a href="{{route('eva.index',['id' => $reserve->shop->id]) }}" class="text-white">お店の評価を投稿する</a>
-          </td>
-        </tr>
       </table>
+      @endif
       @endforeach
       @else
       <div class="col-8 alert alert-info mt-4 text-center" role="alert">

@@ -41,7 +41,7 @@
           <td>
             <form action="{{route('admin.delete',['id'=> $shop->id])}}" method="post">
               @csrf
-            <button id="deleteBtn" class="btn btn-danger">削除</button>
+            <button class="btn btn-danger">削除</button>
           </form>
             </td>
         </tr>

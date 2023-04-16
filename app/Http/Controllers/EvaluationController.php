@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use App\Models\Shop;
+use App\Models\Reserve;
 use App\Models\Evaluation;
 
 class EvaluationController extends Controller
@@ -21,12 +23,20 @@ class EvaluationController extends Controller
         
         $eva = $request->all();
         $check = Evaluation::where('user_id',$request['user_id'])->where('shop_id',$request['shop_id'])->first();
+        $reserves = Reserve::all();
         if($check == null){
             Evaluation::create($eva);
             $message = '評価の投稿ありがとうございました。';
         } else {
             $message = '同じ店を2度評価することはできません。';
         }
-        return view('eva.thanks' ,compact('message'));
+        return view('eva.thanks' ,compact('message','reserves'));
+    }
+
+    public function delete($id)
+    {
+        $reserve = Reserve::find($id);
+        $reserve->delete();
+        return redirect()->route('mypage');
     }
 }

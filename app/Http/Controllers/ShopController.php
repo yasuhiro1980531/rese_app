@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Models\Shop;
 use App\Models\Genre;
 use App\Models\Reserve;
 use App\Models\Like;
 use App\Models\User;
+use App\Models\Evaluation;
+
 
 
 class ShopController extends Controller
@@ -31,7 +34,9 @@ class ShopController extends Controller
     public function detail($id)
     {
         $shop = Shop::find($id);
-        return view('shop.detail',compact('shop'));
+        $evas = Evaluation::where('shop_id',$id)->get();
+        $eva_first = Evaluation::where('shop_id',$id)->first();
+        return view('shop.detail',compact('shop','evas','eva_first'));
     }
 
     public function mypage()
@@ -43,12 +48,13 @@ class ShopController extends Controller
             $myShops = Shop::where('manager_id',Auth::id())->get();
             foreach($myShops as $myShop)
             $myReserves = Reserve::where('shop_id',$myShop->id)->get();
+            $myReserve = Reserve::where('shop_id',$myShop->id)->first();
 
-            return view('mypage',compact('user','myShops','myReserves','shops'));
+            return view('mypage',compact('user','myShops','myReserves','myReserve','shops'));
         }
-
+        $date = new Carbon('-1 day');
         $likes = Like::where('user_id',Auth::id())->get();
         $reserves = Reserve::where('user_id',Auth::id())->get();
-        return view('mypage',compact('user','shops','likes','reserves'));
+        return view('mypage',compact('user','shops','likes','reserves','date'));
     }
 }

@@ -3,11 +3,10 @@
 店舗詳細
 @endsection
 @section('content')
-<body>
 <div class="container">
 @extends('layouts.sidebar')
   <div class="row justify-content-around">
-    <div class="col-5">
+    <div class="col-6">
       <div class="d-flex">
         <a href="{{route('shop.index')}}"><i class="bi bi-chevron-left return_btn"></i></a>
       <h2 class="mb-3">{{ $shop->shop_name }}</h2>
@@ -17,8 +16,69 @@
         <p>#{{ $shop->area }}</p>
         <p>#{{ $shop->genre->name}}</p>
       </div>
-      {{ $shop->text }} 
+      {{ $shop->text }}
+      <div class="mt-4">
+        <h2>お店の評価</h2>
+        @if($eva_first == null)
+          <div class= "alert alert-info mt-4 text-center" role="alert">
+            お店の評価はまだありません。
+          </div>
+        @else
+        @foreach($evas as $eva)
+        <div class="card text-start">
+          <div class="card-body" style="padding:10px;">
+            <div class="d-flex justify-content-between">
+              <p><i class="bi bi-person-circle text-primary"></i>{{ $eva->user->name}}さん</p>
+              @if( $eva->level  == 1)
+              <div class="m-0">
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-secondary p-0"></i>
+                <i class="star bi bi-star-fill text-secondary p-0"></i>
+                <i class="star bi bi-star-fill text-secondary p-0"></i>
+                <i class="star bi bi-star-fill text-secondary p-0"></i>                
+              </div>
+              @elseif( $eva->level  == 2)
+              <div class="m-0">
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-secondary p-0"></i>
+                <i class="star bi bi-star-fill text-secondary p-0"></i>
+                <i class="star bi bi-star-fill text-secondary p-0"></i>
+              </div>
+              @elseif( $eva->level  == 3)
+              <div class="m-0">
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-secondary p-0"></i>
+                <i class="star bi bi-star-fill text-secondary p-0"></i>
+              </div>
+              @elseif( $eva->level  == 4)
+              <div class="m-0">
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-secondary p-0"></i>
+              </div>
+              @else( $eva->level == 5)
+              <div class="m-0">
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+                <i class="star bi bi-star-fill text-warning p-0"></i>
+              </div>
+              @endif
+            </div>
+            <p><i class="bi bi-chat-dots text-primary"></i>{{ $eva->comment }}</p>
+          </div>
+        </div>
+        @endforeach
+        @endif
+      </div>
     </div>
+    
     @auth
     <div class="col-5" >
       <form method="post" action="{{ route('reserve.done') }}">
@@ -106,6 +166,5 @@
     </div>
   </div>
   <script src="{{asset('/js/reserve.js')}}"></script>
-</body>
 @endsection
 

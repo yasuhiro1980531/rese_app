@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/mypage/unlike/{like}',[LikeController::class,'likeDelete'])->name('mypage.likeDelete');
     Route::get('/mypage/eva/{id}',[EvaluationController::class,'index'])->name('eva.index');
     Route::post('/mypage/eva',[EvaluationController::class,'add'])->name('eva.add');
+    Route::post('/mypage/eva/{id}',[EvaluationController::class,'delete'])->name('eva.delete');
 });
 
 Route::group(['middleware' => 'auth.admin'], function () {
