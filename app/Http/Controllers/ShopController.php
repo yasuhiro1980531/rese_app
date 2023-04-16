@@ -55,6 +55,7 @@ class ShopController extends Controller
         $date = new Carbon('-1 day');
         $likes = Like::where('user_id',Auth::id())->get();
         $reserves = Reserve::where('user_id',Auth::id())->get();
-        return view('mypage',compact('user','shops','likes','reserves','date'));
+        $reserve = Reserve::where('user_id',Auth::id())->first();
+        return view('mypage',compact('user','shops','likes','reserves','reserve','date'));
     }
 }

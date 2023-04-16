@@ -128,14 +128,34 @@
     </div>
     <div class="col-6">
       <h2>予約一覧</h2>
-      @if($reserves->where('user_id',$user->id)->first())
+      @if($reserve !== null)
       @foreach($reserves as $reserve)
       @if($date >= $reserve->reserve_date)
       <div class="card text-center mb-5">
-        <div class="card-body">
+        <div class="card-body p-3">
           <p class="card-text">{{$reserve->reserve_date}}に訪れた<span class="fw-bold">{{$reserve->shop->shop_name}}</span>はいかがでしたか？</p>
-          <div class="d-flex justify-content-around">
-            <a href="{{route('eva.index',['id' => $reserve->shop->id]) }}" class="btn btn-primary">評価する</a>
+          <form action="{{ route('eva.add') }}" method="post">
+            @csrf
+          <input type="hidden" name="user_id" value= {{$reserve->user_id}} >
+          <input type="hidden" name="shop_id" value= {{$reserve->shop_id }}>
+          <div class="mb-3">
+            <label class="form-label">満足度</label>
+            <select name="level" class="form-select">
+            <option value="">お店の満足度を５段階で評価してください</option>
+            <option value="5">5(とても満足)</option>
+            <option value="4">4(まあまあ満足)</option>
+            <option value="3">3(普通)</option>
+            <option value="2">2(まあまあ不満)</option>
+            <option value="1">1(とても不満)</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">コメント</label>
+            <textarea type="text" name="comment" class="form-control" rows="5" placeholder="コメントを入力してください"></textarea>
+          </div>
+          <div class="d-flex justify-content-around mb-3">
+            <button class="btn btn-primary">評価する</button>
+          </form>
           <form action="{{ route('reserve.delete',['id' => $reserve->id]) }}" method="POST">
             @csrf
               <button class="btn btn-secondary">評価しない</button>

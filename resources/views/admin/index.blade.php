@@ -34,7 +34,7 @@
           <td>{{ $shop->shop_name}}</td>
           <td>{{ $shop->area}}</td>
           <td>{{ $shop->genre->name }}</td>
-          <td></td>
+          <td>{{ $shop->manager_id }}</td>
           <td><a href="{{route('admin.edit',['id'=> $shop->id])}}">
             <button class="btn btn-success">編集</button>
           </a></td>

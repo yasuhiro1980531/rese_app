@@ -49,9 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/like/{shop}',[LikeController::class,'likes'])->name('like');
     Route::get('/unlike/{shop}',[LikeController::class,'unlikes'])->name('unlike');
     Route::get('/mypage/unlike/{like}',[LikeController::class,'likeDelete'])->name('mypage.likeDelete');
-    Route::get('/mypage/eva/{id}',[EvaluationController::class,'index'])->name('eva.index');
     Route::post('/mypage/eva',[EvaluationController::class,'add'])->name('eva.add');
-    Route::post('/mypage/eva/{id}',[EvaluationController::class,'delete'])->name('eva.delete');
 });
 
 Route::group(['middleware' => 'auth.admin'], function () {
@@ -62,7 +60,6 @@ Route::group(['middleware' => 'auth.admin'], function () {
     Route::post('/admin/update/{id}',[AdminController::class,'update'])->name('admin.update');
     Route::post('/admin/delete/{id}',[AdminController::class,'delete'])->name('admin.delete');
 });
-
 
 Route::group(['middleware' => 'auth.manager'], function () {
     Route::get('/manager',[ManagerController::class,'index'])->name('manager.index');

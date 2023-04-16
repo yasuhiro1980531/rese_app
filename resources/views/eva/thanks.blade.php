@@ -9,9 +9,7 @@
       <div class="card text-center">
         <div class="card-body">
           <h2 class="card-text">{{$message}}</h2>
-          @foreach($reserves as $reserve)
-          <form action="{{ route('eva.delete',['id' => $reserve->id]) }}" method="POST">
-          @endforeach
+          <form action="{{ route('reserve.delete',['id' => $reserve_id]) }}" method="POST">
             @csrf
               <button class="btn btn-primary">マイページに戻る</button>
           </form>
