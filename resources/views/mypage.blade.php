@@ -151,7 +151,7 @@
           </div>
           <div class="mb-4">
             <label class="form-label">コメント</label>
-            <textarea type="text" name="comment" class="form-control" rows="5" placeholder="コメントを入力してください"></textarea>
+            <textarea type="text" name="comment" class="form-control" rows="5" placeholder="コメントを入力してください" maxlength="1000"></textarea>
           </div>
           <div class="d-flex justify-content-around mb-3">
             <button class="btn btn-primary">評価する</button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EvaluationRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Shop;
@@ -11,7 +12,7 @@ use App\Models\Evaluation;
 
 class EvaluationController extends Controller
 {
-    public function add(Request $request)
+    public function add(EvaluationRequest $request)
     {
         
         $eva = $request->all();
