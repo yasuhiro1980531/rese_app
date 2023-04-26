@@ -7,6 +7,7 @@ use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\QrcodeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/unlike/{shop}',[LikeController::class,'unlikes'])->name('unlike');
     Route::get('/mypage/unlike/{like}',[LikeController::class,'likeDelete'])->name('mypage.likeDelete');
     Route::post('/mypage/eva',[EvaluationController::class,'add'])->name('eva.add');
+    Route::get('/mypage/qrcode/{id}',[QrcodeController::class,'find'])->name('qrcode.find');
 });
 
 Route::group(['middleware' => 'auth.admin'], function () {
@@ -65,4 +67,5 @@ Route::group(['middleware' => 'auth.manager'], function () {
     Route::get('/manager',[ManagerController::class,'index'])->name('manager.index');
     Route::get('/manager/edit/{id}',[ManagerController::class,'edit'])->name('manager.edit');
     Route::post('/manager/update/{id}',[ManagerController::class,'update'])->name('manager.update');
+    Route::get('/mypage/reserve/{id}',[QrcodeController::class,'show'])->name('qrcode.show');
 });

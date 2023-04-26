@@ -194,7 +194,10 @@
           <th class="text-center">Number</th>
           <td id="reserveNum">{{$reserve->reserve_num}}人</td>
         </tr>
-      </table>
+        </table>
+        <div class="text-center">
+          <a href="{{ route('qrcode.find',['id' => $reserve->id]) }}" class="btn btn-danger">QRコードを表示する</a>
+        </div>
       @endif
       @endforeach
       @else
