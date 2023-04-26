@@ -130,7 +130,7 @@
       <h2>予約一覧</h2>
       @if($reserve !== null)
       @foreach($reserves as $reserve)
-      @if($date >= $reserve->reserve_date)
+      @if($date >= $reserve->reserve_date && $reserve->status !== null)
       <div class="card text-center mb-5">
         <div class="card-body p-3">
           <p class="card-text">{{$reserve->reserve_date}}に訪れた<span class="fw-bold">{{$reserve->shop->shop_name}}</span>はいかがでしたか？</p>

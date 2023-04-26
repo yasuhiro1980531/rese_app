@@ -19,4 +19,13 @@ class QrcodeController extends Controller
         $reserve = Reserve::find($id);
         return view('qrcode.show',compact('reserve'));
     }
+
+    public function add(Request $request)
+    {
+        $reserve_status = Reserve::where('id',$request->id)->first();
+        $reserve_status->status = $request['status'];
+        //dd($reserve_status->status);
+        $reserve_status->save();
+        return redirect()->route('mypage');
+    }
 }

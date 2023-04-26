@@ -8,7 +8,7 @@
       <div class="card text-center">
         <div class="card-body">
           <h2 class="card-text">{!! QrCode::generate(route('qrcode.show',['id' =>$reserve->id])); !!}</h2>
-          <a href="{{route('mypage')}}" class="btn btn-primary">戻る</a>
+            <a href="{{route('mypage')}}" class="btn btn-primary">戻る</a>
         </div>
       </div>
     </div>

@@ -46,12 +46,18 @@ class ShopController extends Controller
         
         if (auth()->user()->role === 'manager'){
             $myShops = Shop::where('manager_id',Auth::id())->get();
-            foreach($myShops as $myShop)
-            $myReserves = Reserve::where('shop_id',$myShop->id)->get();
-            $myReserve = Reserve::where('shop_id',$myShop->id)->first();
-
-            return view('mypage',compact('user','myShops','myReserves','myReserve','shops'));
+            $yourShop = Shop::where('manager_id',Auth::id())->first();
+            
+            if($yourShop == null){
+                return $message = "担当店舗がありません。";}
+            else{
+                foreach($myShops as $myShop)
+                $myReserves = Reserve::where('shop_id',$myShop->id)->get();
+                $myReserve = Reserve::where('shop_id',$myShop->id)->first();
+                }
+            return view('mypage',compact('user','myShops','myReserves','myReserve','shops','yourShop'));
         }
+
         $date = new Carbon('-1 day');
         $likes = Like::where('user_id',Auth::id())->get();
         $reserves = Reserve::where('user_id',Auth::id())->get();

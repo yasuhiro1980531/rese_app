@@ -8,6 +8,7 @@ use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\EditRequest;
 
 class AdminController extends Controller
 {
@@ -15,7 +16,7 @@ class AdminController extends Controller
     {
         $shops = Shop::all();
         $genres = Genre::all();
-        return view('admin.index',compact('shops','genres'));
+        return view('mypage',compact('shops','genres'));
     }
 
     public function show()
@@ -24,7 +25,7 @@ class AdminController extends Controller
         return view('admin.add',compact('genres'));
     }
 
-    public function add(Request $request)
+    public function add(AdminRequest $request)
     {
         $img = $request->file('image_url');
         if(is_file($img)){
@@ -56,7 +57,7 @@ class AdminController extends Controller
         return view('admin.edit',compact('shops','genres'));
     }
 
-    public function update(AdminRequest $request)
+    public function update(EditRequest $request)
     {
         $img = $request->file('image_url');
         if(is_file($img)){
@@ -74,13 +75,13 @@ class AdminController extends Controller
             $new_shop->image_url = $img;
         }
         $new_shop->save();
-        return redirect()->route('admin.index');
+        return redirect()->route('mypage');
     }
 
     public function delete($id)
     {
         $shop = Shop::find($id);
         $shop->delete();
-        return redirect()->route('admin.index');
+        return redirect()->route('mypage');
     }
 }

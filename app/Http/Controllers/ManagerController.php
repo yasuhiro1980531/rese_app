@@ -7,7 +7,7 @@ use App\Models\Shop;
 use App\Models\Genre;
 use App\Models\Reserve;
 use Illuminate\Http\Request;
-use App\Http\Requests\AdminRequest;
+use App\Http\Requests\EditRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ManagerController extends Controller
@@ -17,7 +17,7 @@ class ManagerController extends Controller
         $user = Auth::user();
         $shops = Shop::all(); 
         $reserves = Reserve::where('user_id',Auth::id())->get();
-        return view('manager.index',compact('user','shops','reserves'));
+        return view('mypage',compact('user','shops','reserves'));
     }
 
     public function edit($id)
@@ -27,7 +27,7 @@ class ManagerController extends Controller
         return view('manager.edit',compact('shops','genres'));
     }
 
-    public function update(AdminRequest $request)
+    public function update(EditRequest $request)
     {
         $img = $request->file('image_url');
         if(is_file($img)){

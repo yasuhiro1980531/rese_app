@@ -47,7 +47,7 @@
                   {{ $errors->first('text') }}</p>
               @endif
               <label class="form-label">店舗紹介文</label>
-              <input type="text" name="text" value="{{ $shops->text }}" class="form-control" style="height:120px;">
+              <textarea name="text" class="form-control" cols="30" rows="6" maxlength="200">{{ $shops->text }}</textarea>
             </div>
             <div class="mb-5 text-start">
               <p>現在の店舗画像</p>

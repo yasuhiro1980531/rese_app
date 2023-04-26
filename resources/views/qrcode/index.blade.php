@@ -35,6 +35,11 @@
             <td id="reserveNum">{{$reserves->reserve_num}}人</td>
           </tr>
         </table>
+        <form action="{{route('qrcode.status',['id' =>$reserves->id])}}" method="post">
+            @csrf
+            <input type="hidden" name="status" value="came">
+              <button class="btn btn-danger">来店済みにする</button>
+            </form>
       </div>
       @endif
   </div>

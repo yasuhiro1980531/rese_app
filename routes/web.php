@@ -31,10 +31,6 @@ Route::get('/thanks', function () {
     return view('shop.thanks');
 })->name('thanks');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
 
 
@@ -55,7 +51,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth.admin'], function () {
-    Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
     Route::get('/admin/show',[AdminController::class,'show'])->name('admin.show');
     Route::post('/admin/show',[AdminController::class,'add'])->name('admin.add');
     Route::get('/admin/edit/{id}',[AdminController::class,'edit'])->name('admin.edit');
@@ -64,8 +59,8 @@ Route::group(['middleware' => 'auth.admin'], function () {
 });
 
 Route::group(['middleware' => 'auth.manager'], function () {
-    Route::get('/manager',[ManagerController::class,'index'])->name('manager.index');
     Route::get('/manager/edit/{id}',[ManagerController::class,'edit'])->name('manager.edit');
     Route::post('/manager/update/{id}',[ManagerController::class,'update'])->name('manager.update');
     Route::get('/mypage/reserve/{id}',[QrcodeController::class,'show'])->name('qrcode.show');
+    Route::post('/mypage/reserve/status/{id}',[QrcodeController::class,'add'])->name('qrcode.status');
 });
