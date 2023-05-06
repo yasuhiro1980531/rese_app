@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reserve;
+use App\Models\Shop;
+use Illuminate\Support\Facades\Auth;
 
 class QrcodeController extends Controller
 {

@@ -23,15 +23,15 @@ class AdminRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        return ([
             'shop_name' => 'required',
             'area' => 'required',
             'genre_id' => 'required',
             'text' => 'required',
             'image_url' => 'required',
-            'name' => ['required', 'string', 'max:191'],
-            'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
-            'password' =>  ['required','max191','min:8'],
-        ];
+            'name' => ['required','string','max:255'],
+            'email' => ['required','string','email','max:255','unique:users'],
+            'password' =>  ['required','max:255','min:8'],
+        ]);
     }
 }
