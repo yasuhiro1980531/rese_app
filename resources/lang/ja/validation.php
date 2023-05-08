@@ -159,9 +159,13 @@ return [
         'reserve_num' => '予約人数',
         'name' => '名前',
         'area' => '地域',
-        'text' => '本文',
+        'text' => '店舗紹介文',
         'genre' => 'ジャンル',
-        'shop_name' => '店名' 
+        'shop_name' => '店名' ,
+        'genre_id' => 'ジャンル',
+        'image_url' => '画像',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード'
     ],
 
 ];
