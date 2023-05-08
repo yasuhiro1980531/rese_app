@@ -14,11 +14,10 @@ class QrcodeController extends Controller
         $myShops = Shop::where('manager_id',Auth::id())->get();
         foreach($myShops as $myShop)
         $myShop_id = $myShop->id;
-        $myReserves = Reserve::where('shop_id',$myShop->id)->get();
-        foreach($myReserves as $myReserve)
-        $myReserve_id = $myReserve->shop_id;
+        
+        $myReserves = Reserve::where('shop_id',$myShop_id)->first();
         $reserves = Reserve::find($id);
-        return view('qrcode.index',compact('reserves','myShop_id','myReserve_id'));
+        return view('qrcode.index',compact('reserves','myReserves'));
     }
     
     

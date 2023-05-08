@@ -6,7 +6,7 @@
 <div class="container">
   <div class="mt-2">
     <h2>予約詳細</h2>
-      @if($reserves == null)
+      @if($myReserves == null)
       <div class="col-8 alert alert-info mt-4 text-center" role="alert">
         予約はありません。
       </div>
