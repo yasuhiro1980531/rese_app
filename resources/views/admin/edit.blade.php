@@ -18,7 +18,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('shop_name') }}</p>
               @endif
-              <input type="text" name="shop_name" value="{{$shops->shop_name}}" class="form-control">
+              <input type="text" name="shop_name" value="{{ old('shop_name',$shops->shop_name) }}" class="form-control">
             </div>
             <div class="mb-3 text-start">
               <label class="form-label">エリア</label>
@@ -26,7 +26,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('area') }}</p>
               @endif
-              <input type="text" name="area" value="{{$shops->area}}" class="form-control">
+              <input type="text" name="area" value="{{old('area',$shops->area) }}" class="form-control">
             </div>
             <div class="mb-3 text-start">
               <label class="form-label">ジャンル</label>
@@ -37,7 +37,7 @@
               <select id="genre" name="genre_id" class="form-select">
               <option value="{{$shops->genre->id}}">{{$shops->genre->name}}</option>
               @foreach($genres as $genre)
-              <option value="{{$genre->id}}">{{ $genre->name }}</option>
+              <option value="{{$genre->id}}" @if( $genre->id == old('genre_id')) selected @endif>{{ $genre->name }}</option>
               @endforeach
               </select>
             </div>
@@ -47,7 +47,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('text') }}</p>
               @endif
-              <textarea name="text" class="form-control" cols="30" rows="6" maxlength="200">{{ $shops->text }}</textarea>
+              <textarea name="text" class="form-control" cols="30" rows="6" maxlength="255">{{ old('text',$shops->text) }}</textarea>
             </div>
             <div class="mb-5 text-start">
               <p>現在の店舗画像</p>

@@ -16,7 +16,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('shop_name') }}</p>
           @endif
-          <input type="text" name="shop_name" class="form-control"  placeholder="店名を入力してください">
+          <input type="text" name="shop_name" value="{{ old('shop_name')}}" class="form-control"  placeholder="店名を入力してください">
         </div>
         <div class="mb-3">
           <label class="form-label">エリア</label>
@@ -24,7 +24,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('area') }}</p>
           @endif
-          <input type="text" name="area"class="form-control" placeholder="エリアを入力してください">
+          <input type="text" name="area" value="{{ old('area')}}" class="form-control" placeholder="エリアを入力してください">
         </div>
         <div class="mb-3">
           <label class="form-label">ジャンル</label>
@@ -35,7 +35,7 @@
           <select id="genre" name="genre_id" class="form-select">
           <option value="">ジャンルを選択してください</option>
           @foreach($genres as $genre)
-          <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+          <option value="{{ $genre->id }}" @if($genre->id == old('genre_id')) selected @endif>{{ $genre->name }}</option>
           @endforeach
           </select>
         </div>
@@ -45,7 +45,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('text') }}</p>
           @endif
-          <textarea type="text" name="text" class="form-control" rows="5" placeholder="店舗紹介文を入力してください"></textarea>
+          <textarea type="text" name="text" class="form-control" rows="5" placeholder="店舗紹介文を入力してください" maxlength="255">{{ old('text')}}</textarea>
         </div>
         <div class="mb-3">
           <label for="formFile" class="form-label">店舗画像</label>
@@ -61,7 +61,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('name') }}</p>
           @endif
-          <input type="text" name="name" class="form-control" placeholder="店長名を入力してください">
+          <input type="text" name="name" value="{{ old('name')}}" class="form-control" placeholder="店長名を入力してください">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">メールアドレス</label>
@@ -69,7 +69,7 @@
                 <p class="alert alert-danger mt-2">
                   {{ $errors->first('email') }}</p>
           @endif
-          <input type="email" name="email"class="form-control"  placeholder="メールアドレスを入力してください">
+          <input type="email" name="email" value="{{ old('email')}}" class="form-control"  placeholder="メールアドレスを入力してください">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">パスワード</label>

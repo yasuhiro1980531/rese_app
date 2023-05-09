@@ -14,7 +14,6 @@ class QrcodeController extends Controller
         $myShops = Shop::where('manager_id',Auth::id())->get();
         foreach($myShops as $myShop)
         $myShop_id = $myShop->id;
-        
         $myReserves = Reserve::where('shop_id',$myShop_id)->first();
         $reserves = Reserve::find($id);
         return view('qrcode.index',compact('reserves','myReserves'));

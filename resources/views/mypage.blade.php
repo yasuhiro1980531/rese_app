@@ -70,7 +70,7 @@
 @if (auth()->user()->role === 'administrator')
 <div class="container">
   <div class="row justify-content-center mt-5">
-    <div class="col-10 m-auto">
+    <div class="col-10  m-auto">
       <h2 class="mb-5">管理者専用画面</h2>
       <div class="d-flex justify-content-between">
         <a href="{{ route('admin.show') }}">

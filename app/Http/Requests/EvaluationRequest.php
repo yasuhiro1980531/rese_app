@@ -25,7 +25,6 @@ class EvaluationRequest extends FormRequest
     {
         return [
             'level' => 'required',
-            'comment' => 'max:1000'
         ];
     }
 }
