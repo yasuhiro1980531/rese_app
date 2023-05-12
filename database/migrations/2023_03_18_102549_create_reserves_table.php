@@ -15,10 +15,18 @@ class CreateReservesTable extends Migration
     {
         Schema::create('reserves', function (Blueprint $table) {
             $table->id();
-            $table->integer('members_id');
+            $table->foreignId('user_id')
+                    ->constrained('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->foreignId('shop_id')
+                    ->constrained('shops')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->date('reserve_date');
             $table->time('reserve_time');
             $table->integer('reserve_num');
+            $table->string('status');
             $table->timestamps();
         });
     }

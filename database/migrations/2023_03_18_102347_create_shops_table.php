@@ -15,11 +15,18 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('shop_name');
             $table->string('area');
-            $table->integer('genre_id');
+            $table->foreignId('genre_id')
+                    ->constrained('genres')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->string('text');
             $table->string('image_url');
+            $table->foreignId('manager_id')
+                    ->constrained('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }
