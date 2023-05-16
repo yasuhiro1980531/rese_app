@@ -52,7 +52,7 @@ class Shop extends Model
     {
         $query = self::query();
         if (!empty($keyword)) {
-            $query->where('name', 'like binary', "%{$keyword}%");
+            $query->where('shop_name', 'like binary', "%{$keyword}%");
         }
         if(!empty($genre_id)) {
             $query->where('genre_id', 'LIKE',$genre_id);
